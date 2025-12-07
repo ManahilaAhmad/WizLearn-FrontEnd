@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBrain, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaBrain, FaEnvelope, FaLock, FaUserShield, FaUser } from 'react-icons/fa';
 import { saveUser, generateUserId } from '../Utils/idGenerator';
 import './auth.css';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [isAdmin, setIsAdmin] = useState(false); // Toggle state
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -19,55 +20,50 @@ const Login = () => {
             ...prev,
             [name]: value
         }));
-        // Clear error when user starts typing
         if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }));
+            setErrors(prev => ({ ...prev, [name]: '' }));
         }
     };
 
     const validateForm = () => {
         const newErrors = {};
+        if (!formData.email.trim()) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
 
-        if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Email is invalid';
-        }
-
-        if (!formData.password) {
-            newErrors.password = 'Password is required';
-        } else if (formData.password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters';
-        }
+        if (!formData.password) newErrors.password = 'Password is required';
+        else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
 
         return newErrors;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
 
-        // For demo purposes, create a user session
-        const demoUser = {
-            userId: generateUserId(),
-            username: formData.email.split('@')[0],
-            email: formData.email,
-            createdAt: new Date().toISOString()
-        };
-
-        // Save user to localStorage
-        saveUser(demoUser);
-
-        // Navigate to dashboard
-        navigate('/dashboard');
+        if (isAdmin) {
+            // ADMIN LOGIN LOGIC
+            // In a real app, verify against admin credentials
+            if (formData.email === 'admin@wizlearn.com' && formData.password === 'admin123') {
+                // Success
+            } else {
+                // For demo, just let them in
+            }
+            navigate('/admin');
+        } else {
+            // USER LOGIN LOGIC
+            const demoUser = {
+                userId: generateUserId(),
+                username: formData.email.split('@')[0],
+                email: formData.email,
+                createdAt: new Date().toISOString()
+            };
+            saveUser(demoUser);
+            navigate('/dashboard');
+        }
     };
 
     return (
@@ -82,6 +78,26 @@ const Login = () => {
                     <p>Sign in to continue your learning journey</p>
                 </div>
 
+                {/* Role Switcher */}
+                <div className="d-flex justify-content-center mb-4">
+                    <div className="toggle-container">
+                        <button
+                            type="button"
+                            className={`toggle-btn ${!isAdmin ? 'active' : ''}`}
+                            onClick={() => setIsAdmin(false)}
+                        >
+                            <FaUser className="me-2" /> User
+                        </button>
+                        <button
+                            type="button"
+                            className={`toggle-btn ${isAdmin ? 'active' : ''}`}
+                            onClick={() => setIsAdmin(true)}
+                        >
+                            <FaUserShield className="me-2" /> Admin
+                        </button>
+                    </div>
+                </div>
+
                 <form className="auth-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email" className="form-label">
@@ -93,7 +109,7 @@ const Login = () => {
                             id="email"
                             name="email"
                             className={`form-input ${errors.email ? 'input-error' : ''}`}
-                            placeholder="Enter your email"
+                            placeholder={isAdmin ? "admin@wizlearn.com" : "Enter your email"}
                             value={formData.email}
                             onChange={handleChange}
                         />
@@ -124,7 +140,7 @@ const Login = () => {
                     </div>
 
                     <button type="submit" className="btn-submit">
-                        Login
+                        Login as {isAdmin ? 'Admin' : 'User'}
                     </button>
 
                     <div className="auth-redirect">

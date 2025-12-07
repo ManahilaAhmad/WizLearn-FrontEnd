@@ -33,7 +33,7 @@ const DashboardNavbar = ({ onFindCourse, onAddFriend }) => {
                         </Link>
                     </li>
                     <li>
-                        <button className="nav-link nav-button" onClick={() => alert('ChatBox feature coming soon!')}>
+                        <button className="nav-link nav-button" onClick={() => navigate('/chat')}>
                             <FaComments />
                             <span>ChatBox</span>
                         </button>

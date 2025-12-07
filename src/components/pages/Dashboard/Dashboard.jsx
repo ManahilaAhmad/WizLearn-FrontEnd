@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaRobot } from 'react-icons/fa';
+import { FaPlus, FaRobot, FaCommentDots } from 'react-icons/fa';
 import DashboardNavbar from './DashboardNavbar';
 import CourseCard from './CourseCard';
 import AddCourseModal from './AddCourseModal';
@@ -175,6 +175,25 @@ const Dashboard = () => {
                     onSubmit={handleAddCourse}
                     editCourse={editingCourse}
                 />
+
+                {/* Floating Chat Button */}
+                <div
+                    style={{
+                        position: 'fixed',
+                        bottom: '30px',
+                        left: '30px',
+                        zIndex: 1000
+                    }}
+                >
+                    <button
+                        className="btn btn-warning shadow-lg rounded-circle p-3 d-flex align-items-center justify-content-center"
+                        style={{ width: '60px', height: '60px' }}
+                        onClick={() => navigate('/chat')}
+                        title="Open Chat"
+                    >
+                        <FaCommentDots size={28} color="#17294f" />
+                    </button>
+                </div>
             </main>
         </div>
     );
