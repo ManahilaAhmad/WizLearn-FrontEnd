@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBrain, FaUser, FaEnvelope, FaLock, FaCheckCircle } from 'react-icons/fa';
-import { generateUserId, saveUser } from '../../utils/idGenerator';
+import { generateUserId, saveUser } from '../Utils/idGenerator';
 import './auth.css';
 
 const Signup = () => {

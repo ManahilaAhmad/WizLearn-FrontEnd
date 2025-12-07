@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBrain, FaEnvelope, FaLock } from 'react-icons/fa';
-import { saveUser, generateUserId } from '../../utils/idGenerator';
+import { saveUser, generateUserId } from '../Utils/idGenerator';
 import './auth.css';
 
 const Login = () => {

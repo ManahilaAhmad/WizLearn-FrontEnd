@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBrain, FaLightbulb, FaRoad, FaSignOutAlt } from 'react-icons/fa';
-import { clearUser } from '../../../utils/idGenerator';
+import { clearUser } from '../Utils/idGenerator';
 
 const CourseNavbar = ({ courseTitle, onGenerateQuiz, onGenerateRoadmap }) => {
     const navigate = useNavigate();

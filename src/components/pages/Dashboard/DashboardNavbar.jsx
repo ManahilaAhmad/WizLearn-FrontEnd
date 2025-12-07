@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBrain, FaHome, FaUser, FaComments, FaSignOutAlt, FaUserPlus, FaSearch } from 'react-icons/fa';
-import { clearUser } from '../../../utils/idGenerator';
+import { clearUser } from '../Utils/idGenerator';
 
 const DashboardNavbar = ({ onFindCourse, onAddFriend }) => {
     const navigate = useNavigate();

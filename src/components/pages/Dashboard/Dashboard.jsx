@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaRobot } from 'react-icons/fa';
-import DashboardNavbar from './components/DashboardNavbar';
-import CourseCard from './components/CourseCard';
-import AddCourseModal from './components/AddCourseModal';
-import { getCurrentUser, generateCourseId, getCourseColorByIndex } from '../../utils/idGenerator';
+import DashboardNavbar from './DashboardNavbar';
+import CourseCard from './CourseCard';
+import AddCourseModal from './AddCourseModal';
+import { getCurrentUser, generateCourseId, getCourseColorByIndex } from '../Utils/idGenerator';
 import './dashboard.css';
 
 const Dashboard = () => {

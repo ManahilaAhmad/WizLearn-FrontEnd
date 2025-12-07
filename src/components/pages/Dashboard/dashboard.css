@@ -434,7 +434,13 @@
 }
 
 @keyframes fadeIn {
-    transition: all 0.3s ease;
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .close-btn:hover {

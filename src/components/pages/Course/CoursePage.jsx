@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
-import CourseNavbar from './components/CourseNavbar';
-import MaterialCard from './components/MaterialCard';
-import UploadMaterialModal from './components/UploadMaterialModal';
-import { getCurrentUser, getCourseColorByIndex } from '../../utils/idGenerator';
+import CourseNavbar from './CourseNavbar';
+import MaterialCard from './MaterialCard';
+import UploadMaterialModal from './UploadMaterialModal';
+import { getCurrentUser, getCourseColorByIndex } from '../Utils/idGenerator';
 import './course.css';
 
 const CoursePage = () => {

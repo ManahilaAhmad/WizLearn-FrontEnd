@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/Landing/LandingPage';
-import Login from './pages/Auth/Login';
-import Signup from './pages/Auth/Signup';
-import Dashboard from './pages/Dashboard/Dashboard';
-import CoursePage from './pages/Course/CoursePage';
-import ProfilePage from './pages/Profile/ProfilePage';
+import LandingPage from './components/pages/Landing/LandingPage';
+import Login from './components/pages/Auth/Login';
+import Signup from './components/pages/Auth/Signup';
+import Dashboard from './components/pages/Dashboard/Dashboard';
+import CoursePage from './components/pages/Course/CoursePage';
+import ProfilePage from './components/pages/Profile/ProfilePage';
 
 // Main App Component with Router
 const App = () => {
